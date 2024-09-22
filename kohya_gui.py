@@ -22,7 +22,7 @@ def UI(**kwargs):
 
     if os.path.exists("/kaggle/working/kohya_ss/assets/style.css"):
         print("1111111111111111")
-        with open(os.path.join("/kaggle/working/kohya_ss/assets/style.css"), "r", encoding="utf8") as file:
+        with open("/kaggle/working/kohya_ss/assets/style.css", "r", encoding="utf8") as file:
             log.debug("Load CSS...")
             css += file.read() + "\n"
 
