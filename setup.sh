@@ -188,7 +188,7 @@ install_python_dependencies() {
 
   # Switch to local virtual env
   echo "Switching to virtual Python environment."
-  if ! inDocker; then
+  if inDocker; then
     echo "11111"
     if command -v python3.10 >/dev/null; then
       echo "00000"
