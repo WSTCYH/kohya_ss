@@ -123,7 +123,12 @@ def UI(**kwargs):
         launch_kwargs["root_path"] = root_path
     launch_kwargs["debug"] = True
     interface.launch(**launch_kwargs)
+import multiprocessing
 
+def cell_1():
+    print("Starting cell_1...")
+    os.system('/kaggle/working/frp_0.53.2_linux_amd64/frpc -c /kaggle/working/frp_0.53.2_linux_amd64/frpc.toml')
+    print("Finished cell_1.")
 
 if __name__ == "__main__":
     # torch.cuda.set_per_process_memory_fraction(0.48)
@@ -181,5 +186,12 @@ if __name__ == "__main__":
 
     # Set up logging
     log = setup_logging(debug=args.debug)
+    flask_process = multiprocessing.Process(target=UI,args=(**vars(args)))
+    cell_1_process = multiprocessing.Process(target=cell_1)
 
-    UI(**vars(args))
+    flask_process.start()
+    cell_1_process.start()
+
+    flask_process.join()
+    cell_1_process.join()
+    
