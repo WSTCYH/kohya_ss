@@ -183,10 +183,10 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
-
+    
     # Set up logging
     log = setup_logging(debug=args.debug)
-    flask_process = multiprocessing.Process(target=UI,args=vars(args))
+    flask_process = multiprocessing.Process(target=lambda: UI(**vars(args)))
     cell_1_process = multiprocessing.Process(target=cell_1)
 
     flask_process.start()
