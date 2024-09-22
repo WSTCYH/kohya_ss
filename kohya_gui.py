@@ -20,7 +20,7 @@ def UI(**kwargs):
     headless = kwargs.get("headless", False)
     log.info(f"headless: {headless}")
 
-    if os.path.exists("./assets/style.css"):
+    if os.path.exists(os.getcwd()+"/assets/style.css"):
         with open(os.path.join("./assets/style.css"), "r", encoding="utf8") as file:
             log.debug("Load CSS...")
             css += file.read() + "\n"
